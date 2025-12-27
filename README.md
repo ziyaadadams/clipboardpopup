@@ -7,7 +7,7 @@ Supports GNOME Shell 45–49. Default shortcut: Super+V.
 <details>
 <summary><strong>✨ Highlights</strong></summary>
 
-- History of text and images (PNG, size-capped) with thumbnails and source metadata
+- History of text and images (PNG, size-capped to ~8 MB) with thumbnails and source metadata
 - Pinned items, inline pin/unpin, delete, and clear-unpinned with confirmation
 - Keyboard friendly: Enter to copy, Shift+Enter plain, Ctrl+P pin, Delete remove, Esc close
 - Emoji, kaomoji, symbols, and GIF picker (Tenor) with search; picks are added to history

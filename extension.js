@@ -24,7 +24,7 @@ const ByteArray = imports.byteArray;
 
 const HISTORY_FILE = GLib.build_filenamev([GLib.get_user_cache_dir(), 'clipboardpopup', 'history.json']);
 const MAX_PREVIEW_CHARS = 160;
-const MAX_IMAGE_BYTES = 1_500_000;
+const MAX_IMAGE_BYTES = 8_000_000; // allow full-screen screenshots
 const THUMB_SIZE = 120;
 const MAX_EMOJI_RECENTS = 30;
 const EMOJI_CATEGORIES = {
@@ -843,23 +843,6 @@ class ClipboardPopup {
         this._activePickerMode = mode;
         this._pickerPane = new St.BoxLayout({vertical: true, style_class: 'emoji-pane', x_expand: true});
         
-        // Mode tabs (emoji, kaomoji, symbols, GIF)
-        const modeTabs = new St.BoxLayout({vertical: false, style_class: 'emoji-tabs picker-mode-tabs', x_expand: true});
-        const modeButtons = new Map();
-        
-        PICKER_MODES.forEach(m => {
-            const modeIcon = new St.Icon({icon_name: m.icon, icon_size: 16});
-            const modeBtn = new St.Button({child: modeIcon, style_class: 'emoji-tab popup-menu-item', can_focus: true, accessible_name: m.label});
-            if (m.id === mode) modeBtn.add_style_class_name('active');
-            modeButtons.set(m.id, modeBtn);
-            modeBtn.connect('clicked', () => {
-                this._togglePicker(m.id, true);
-            });
-            modeTabs.add_child(modeBtn);
-        });
-        
-        this._pickerPane.add_child(modeTabs);
-        
         // Render content based on mode
         if (mode === 'gif') {
             this._renderGifPicker(this._pickerPane);
@@ -1352,33 +1335,67 @@ export default class ClipboardPopupExtension extends Extension {
         if (this._shouldSkipSecure()) {
             return;
         }
-        // Request PNG; on Wayland/X11 this returns bytes when an image is present.
-        this._clipboard.get_content(St.ClipboardType.CLIPBOARD, 'image/png', (_clip, bytes) => {
-            if (!bytes) {
+
+        const handlePixbuf = pixbuf => {
+            if (!pixbuf)
                 return;
-            }
             try {
-                const arr = ByteArray.toUint8Array(bytes);
-                if (!arr || arr.length === 0 || arr.length > MAX_IMAGE_BYTES) {
-                    return; // Skip empty or too large.
-                }
+                const buf = pixbuf.save_to_bufferv('png', [], [])[1];
+                const arr = ByteArray.toUint8Array(buf);
+                if (!arr || arr.length === 0 || arr.length > MAX_IMAGE_BYTES)
+                    return;
                 const hash = GLib.compute_checksum_for_data(GLib.ChecksumType.MD5, arr);
                 const fingerprint = `img:${hash}`;
-                if (this._lastImage === fingerprint) {
+                if (this._lastImage === fingerprint)
                     return;
-                }
                 this._lastImage = fingerprint;
-                const gbytes = GLib.Bytes.new(arr);
-                const stream = Gio.MemoryInputStream.new_from_bytes(gbytes);
-                const pixbuf = GdkPixbuf.Pixbuf.new_from_stream(stream, null);
                 const b64 = GLib.base64_encode(arr);
                 const source = this._getSourceMeta();
                 this._history.addImage(b64, {width: pixbuf.get_width(), height: pixbuf.get_height()}, source, hash);
             } catch (e) {
-                // Ignore failures quietly to avoid spam.
                 return;
             }
-        });
+        };
+
+        const tryPngBytes = () => {
+            this._clipboard.get_content(St.ClipboardType.CLIPBOARD, 'image/png', (_c2, bytes) => {
+                if (!bytes)
+                    return;
+                try {
+                    const arr = ByteArray.toUint8Array(bytes);
+                    if (!arr || arr.length === 0 || arr.length > MAX_IMAGE_BYTES)
+                        return;
+                    const hash = GLib.compute_checksum_for_data(GLib.ChecksumType.MD5, arr);
+                    const fingerprint = `img:${hash}`;
+                    if (this._lastImage === fingerprint)
+                        return;
+                    this._lastImage = fingerprint;
+                    const gbytes = GLib.Bytes.new(arr);
+                    const stream = Gio.MemoryInputStream.new_from_bytes(gbytes);
+                    const pngPixbuf = GdkPixbuf.Pixbuf.new_from_stream(stream, null);
+                    const b64 = GLib.base64_encode(arr);
+                    const source = this._getSourceMeta();
+                    this._history.addImage(b64, {width: pngPixbuf.get_width(), height: pngPixbuf.get_height()}, source, hash);
+                } catch (e) {
+                    return;
+                }
+            });
+        };
+
+        // Try native pixbuf first if available
+        if (this._clipboard.get_image) {
+            this._clipboard.get_image(St.ClipboardType.CLIPBOARD, (_clip, pixbuf) => {
+                if (pixbuf) {
+                    handlePixbuf(pixbuf);
+                    return;
+                }
+                // Fallback to PNG bytes
+                tryPngBytes();
+            });
+        } else {
+            // get_image not available, go straight to PNG bytes
+            tryPngBytes();
+        }
     }
 
     _getSourceMeta() {
