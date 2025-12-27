@@ -380,12 +380,6 @@ class ClipboardPopup {
         this._scroll.set_child(this._list);
         this._container.add_child(this._scroll);
 
-        this._footer = new St.Label({
-            text: 'Enter copy (rich if available) • Shift+Enter or right-click = plain • Esc close • Ctrl+P pin • Del remove',
-            x_align: Clutter.ActorAlign.START,
-        });
-        this._container.add_child(this._footer);
-
         this._switchMainTab('history');
 
         this._eventIds = [];
@@ -813,7 +807,7 @@ class ClipboardPopup {
     }
 
     _setHistoryVisible(show) {
-        [this._search, this._scroll, this._footer, this._historyToolbar].forEach(actor => {
+        [this._search, this._scroll, this._historyToolbar].forEach(actor => {
             if (actor)
                 actor.visible = show;
         });
