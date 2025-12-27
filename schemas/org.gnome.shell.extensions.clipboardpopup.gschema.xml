@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.clipboardpopup" path="/org/gnome/shell/extensions/clipboardpopup/">
+    <key name="history-size" type="i">
+      <default>30</default>
+      <summary>Maximum clipboard history entries</summary>
+      <description>Number of clipboard entries to keep before discarding oldest unpinned items.</description>
+    </key>
+    <key name="poll-interval-ms" type="i">
+      <default>800</default>
+      <summary>Clipboard poll interval (ms)</summary>
+      <description>How often to poll clipboard contents to detect changes.</description>
+    </key>
+    <key name="shortcut" type="as">
+      <default>['&lt;Super&gt;v']</default>
+      <summary>Shortcut to toggle popup</summary>
+      <description>Keybinding used to show the clipboard popup.</description>
+    </key>
+    <key name="persist-history" type="b">
+      <default>true</default>
+      <summary>Persist history across sessions</summary>
+      <description>When enabled, history is saved under the user cache directory.</description>
+    </key>
+    <key name="track-primary" type="b">
+      <default>false</default>
+      <summary>Track primary selection</summary>
+      <description>When enabled, also record PRIMARY selections (middle-click paste buffer). Useful on X11; Wayland behavior depends on compositor.</description>
+    </key>
+    <key name="auto-paste" type="b">
+      <default>false</default>
+      <summary>Paste immediately after selection (X11 only)</summary>
+      <description>Automatically simulate paste after selecting an item. This is not available on Wayland for security reasons.</description>
+    </key>
+    <key name="paste-as-plain-text" type="b">
+      <default>false</default>
+      <summary>Paste as plain text</summary>
+      <description>When enabled, pasted output strips formatting/HTML. Shift+Enter always pastes plain text.</description>
+    </key>
+    <key name="pause-capture" type="b">
+      <default>false</default>
+      <summary>Pause clipboard capture</summary>
+      <description>When enabled, clipboard changes are ignored until resumed.</description>
+    </key>
+    <key name="enable-secure-heuristics" type="b">
+      <default>true</default>
+      <summary>Skip capture in likely secure contexts</summary>
+      <description>Best-effort heuristic to avoid capturing clipboard from known secure contexts (e.g., password prompts) based on window/app class names.</description>
+    </key>
+    <key name="skip-wm-classes" type="as">
+      <default>[]</default>
+      <summary>Window classes to skip</summary>
+      <description>When a focused window class matches any of these, clipboard captures are skipped. Useful for password managers or browsers.</description>
+    </key>
+    <key name="max-rich-bytes" type="i">
+      <default>262144</default>
+      <summary>Maximum bytes for rich text</summary>
+      <description>Upper bound for stored HTML/RTF payloads to avoid bloat (bytes).</description>
+    </key>
+    <key name="emoji-recents" type="as">
+      <default>[]</default>
+      <summary>Recently used emoji</summary>
+      <description>Stores recently picked emoji to surface in the emoji picker.</description>
+    </key>
+    <key name="popup-position" type="s">
+      <default>'window'</default>
+      <summary>Popup position mode</summary>
+      <description>Where to show the popup: 'window' (near top of focused window) or 'mouse' (near mouse cursor).</description>
+    </key>
+  </schema>
+</schemalist>

@@ -1,0 +1,73 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║           CLIPBOARD POPUP - WINDOWS-STYLE FOR GNOME                  ║
+║                  (Like Windows 10/11 Win+V)                          ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+✅ INSTALLATION COMPLETE!
+
+📝 IMPORTANT: YOU MUST LOG OUT AND BACK IN FOR IT TO WORK
+   (Wayland requires a full session restart)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 QUICK START (After logging back in):
+
+1. Press Super+V (Windows key + V) to open clipboard history
+2. Copy some text or images to populate the history
+3. Press Super+V again to see your clipboard history
+4. Use arrow keys or mouse to select, Enter to paste
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⌨️  KEYBOARD SHORTCUTS:
+
+  Super+V ........... Open clipboard history popup
+  Enter ............. Paste selected item (with formatting)
+  Shift+Enter ....... Paste as plain text
+  Ctrl+P ............ Pin/unpin item
+  Delete ............ Remove item
+  ↑/↓ ............... Navigate items
+  Esc ............... Close popup
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ FEATURES:
+
+  ✓ Text clipboard history (with rich text support)
+  ✓ Image clipboard support (with thumbnails)
+  ✓ Pin important items
+  ✓ Search/filter items
+  ✓ Emoji picker built-in
+  ✓ Security: auto-skips password managers
+  ✓ Persists across reboots
+  ✓ Panel indicator (clipboard icon in top bar)
+  ✓ Configurable via Extensions app
+  ✓ Adapts to your GNOME Shell theme
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 VERIFY INSTALLATION:
+
+  gnome-extensions info clipboardpopup@local
+
+  Should show: State: ACTIVE, Enabled: Yes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚙️  CONFIGURE SETTINGS:
+
+  gnome-extensions prefs clipboardpopup@local
+
+  Or use the GNOME Extensions app
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 FILES:
+
+  Extension:  ~/.local/share/gnome-shell/extensions/clipboardpopup@local/
+  History:    ~/.cache/clipboardpopup/history.json
+  Settings:   Managed by GSettings
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For detailed information, see INSTALL.md, THEME-UPDATE.md and README.md

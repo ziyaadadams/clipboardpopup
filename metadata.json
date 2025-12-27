@@ -1,0 +1,8 @@
+{
+  "uuid": "clipboardpopup@local",
+  "name": "Clipboard Popup",
+  "description": "Windows-style clipboard history invoked via a shortcut (e.g., Super+V).",
+  "shell-version": ["45", "46", "47", "48", "49"],
+  "version": 6,
+  "settings-schema": "org.gnome.shell.extensions.clipboardpopup"
+}

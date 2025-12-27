@@ -1,0 +1,179 @@
+/* Clipboard Popup - follows GNOME Shell theme */
+
+/* Main popup inherits from popup-menu */
+.clipboard-popup {
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.clipboard-popup .header {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+/* Header tabs (icon only) */
+.clipboard-popup .header-tabs {
+  spacing: 2px;
+}
+
+.clipboard-popup .header-tab {
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.clipboard-popup .header-tab.active {
+  font-weight: bold;
+}
+
+.clipboard-popup .header-close {
+  padding: 6px;
+  border-radius: 6px;
+}
+
+/* History toolbar */
+.clipboard-popup .history-toolbar {
+  margin-bottom: 8px;
+  spacing: 6px;
+}
+
+.clipboard-popup .toolbar-btn {
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* Emoji picker pane */
+.clipboard-popup .emoji-pane {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Emoji category tabs */
+.clipboard-popup .emoji-tabs {
+  margin-bottom: 8px;
+  spacing: 4px;
+}
+
+.clipboard-popup .emoji-tab {
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* Section titles in emoji grid */
+.clipboard-popup .emoji-section-title {
+  margin: 8px 0 4px 0;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+/* Emoji grid layout */
+.clipboard-popup .emoji-grid {
+  margin-bottom: 8px;
+}
+
+.clipboard-popup .emoji-grid-row {
+  spacing: 4px;
+}
+
+/* Individual emoji buttons */
+.clipboard-popup .emoji-btn {
+  padding: 4px;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+/* Kaomoji buttons need more space */
+.clipboard-popup .kaomoji-btn {
+  padding: 4px 6px;
+  min-width: 40px;
+  min-height: 24px;
+  font-size: 11px;
+  border-radius: 6px;
+}
+
+/* Paused badge */
+.clipboard-popup .badge.paused {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* Clipboard history items */
+.clipboard-popup .item {
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 2px;
+}
+
+/* Image thumbnails */
+.clipboard-popup .thumb {
+  margin-top: 6px;
+  border-radius: 8px;
+}
+
+/* Primary text in items */
+.clipboard-popup .item .primary {
+  font-size: 13px;
+}
+
+/* Secondary/meta text */
+.clipboard-popup .item .secondary {
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* Footer hint text */
+.clipboard-popup .footer {
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+/* Scroll view */
+.clipboard-popup .scroll-view {
+  padding: 2px;
+}
+
+/* Emoji list in picker */
+.clipboard-popup .emoji-list {
+  padding: 4px;
+}
+
+/* Picker mode tabs (emoji/kaomoji/symbols/GIF) */
+.clipboard-popup .picker-mode-tabs {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.clipboard-popup .picker-mode-tabs .emoji-tab.active {
+  font-weight: bold;
+}
+
+/* GIF picker */
+.clipboard-popup .gif-grid {
+  margin: 8px 0;
+}
+
+.clipboard-popup .gif-row {
+  spacing: 8px;
+  margin-bottom: 8px;
+}
+
+.clipboard-popup .gif-btn {
+  padding: 8px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 8px;
+}
+
+/* Active tab styling */
+.clipboard-popup .emoji-tab.active {
+  font-weight: bold;
+}
